@@ -8,72 +8,120 @@
     :root { --brand:#004aad; --ink:#222; --muted:#6b7280; }
     * { box-sizing: border-box; }
     body { margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--ink); background:#f7f7f7; }
-    header { background:var(--brand); color:#fff; padding:56px 20px; text-align:center; }
-    header h1 { margin:0 0 8px; font-size:2rem; letter-spacing:0.3px; }
-    header p { margin:0; opacity:.9; }
+
+    /* ——— HERO (Option C) ——— */
+    .hero {
+      min-height: 56vh;               /* good first-screen height */
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      isolation: isolate;              /* ensure overlay sits below content */
+      /* If you have a 2x version, uncomment the image-set() and comment the single url() */
+      background:
+        linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25)), /* overlay */
+        url('/images/Power.png') center / cover no-repeat;
+      /* background:
+        linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,.25)),
+        image-set(
+          url('/images/Power.png') 1x,
+          url('/images/Power@2x.png') 2x
+        ) center / cover no-repeat; */
+    }
+    .hero__content {
+      background: rgba(0,0,0,.28);
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.20);
+      max-width: 900px;
+      margin: 0 20px;
+    }
+    .hero__title {
+      margin: 0 0 8px;
+      font-size: clamp(1.75rem, 3.5vw + .5rem, 2.5rem);
+      letter-spacing: .3px;
+    }
+    .hero__subtitle {
+      margin: 0;
+      opacity: .95;
+    }
+
     main { max-width:900px; margin:36px auto; padding:0 20px; }
     .card { background:#fff; border-radius:8px; padding:24px; box-shadow:0 6px 24px rgba(0,0,0,.06); margin-bottom:20px;}
     footer { text-align:center; color:var(--muted); padding:28px 12px; }
     a { color:var(--brand); text-decoration:none; }
     a:hover { text-decoration:underline; }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero__content { transform: translateY(0); animation: floatIn .5s ease-out both; }
+      @keyframes floatIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+    }
+
+    /* Small screens: give the hero a bit more height */
+    @media (max-width: 480px) {
+      .hero { min-height: 62vh; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Network Analytics</h1>
-    <p>Pragmatic solutions for a complex regulatory and pricing environment.</p>
-  </header>
 
-<main>
-  <section class="card">
-    <h2>Specialist Consulting</h2>
-    <h2>for New Zealand Electricity Distribution Businesses</h2>
-    <p>Network Analytics provides consultancy and project services to electricity distribution businesses across Aotearoa New Zealand. I help networks meet their regulatory obligations, improve pricing outcomes, and strengthen their commercial and operational performance.</p>
-    <p>With deep experience in the Commerce Act, Electricity Authority Code, and registry obligations, I translate complex regulatory requirements into clear, workable solutions.</p>
+  <!-- HERO with background image -->
+  <section class="hero" role="img" aria-label="Steel lattice electricity transmission pylon against a blue sky">
+    <div class="hero__content">
+      <h1 class="hero__title">Network Analytics</h1>
+      <p class="hero__subtitle">Pragmatic solutions for a complex regulatory and pricing environment.</p>
+    </div>
   </section>
 
-  <section class="card">
-    <h2>Services</h2>
-    <h3>Regulatory Compliance &amp; Strategy</h3>
-    <ul>
-      <li>Price and quality regulation support</li>
-      <li>Information Disclosure requirements</li>
-      <li>Pricing principles compliance</li>
-      <li>Regulatory submissions</li>
-      <li>Audit readiness and documentation</li>
-    </ul>
+  <main>
+    <section class="card">
+      <h2>Specialist Consulting</h2>
+      <h2>for New Zealand Electricity Distribution Businesses</h2>
+      <p>Network Analytics provides consultancy and project services to electricity distribution businesses across Aotearoa New Zealand. I help networks meet their regulatory obligations, improve pricing outcomes, and strengthen their commercial and operational performance.</p>
+      <p>With deep experience in the Commerce Act, Electricity Authority Code, and registry obligations, I translate complex regulatory requirements into clear, workable solutions.</p>
+    </section>
 
-    <h3>Pricing &amp; Commercial Strategy</h3>
-    <ul>
-      <li>Pricing methodology development</li>
-      <li>Tariff design and evaluation</li>
-      <li>Volume &amp; demand analysis</li>
-      <li>Revenue modelling and forecasting</li>
-    </ul>
+    <section class="card">
+      <h2>Services</h2>
+      <h3>Regulatory Compliance &amp; Strategy</h3>
+      <ul>
+        <li>Price and quality regulation support</li>
+        <li>Information Disclosure requirements</li>
+        <li>Pricing principles compliance</li>
+        <li>Regulatory submissions</li>
+        <li>Audit readiness and documentation</li>
+      </ul>
 
-    <h3>Reporting &amp; Operational Support</h3>
-    <ul>
-      <li>Network volume and demand reporting</li>
-      <li>Billing systems and data validation</li>
-      <li>Revenue protection</li>
-      <li>Process improvement</li>
-    </ul>
-  </section>
+      <h3>Pricing &amp; Commercial Strategy</h3>
+      <ul>
+        <li>Pricing methodology development</li>
+        <li>Tariff design and evaluation</li>
+        <li>Volume &amp; demand analysis</li>
+        <li>Revenue modelling and forecasting</li>
+      </ul>
 
-  <section class="card">
-    <h2>Contact</h2>
-    <p><strong>Alex Nisbet</strong><br>
-      Phone: <a href="tel:+64272488614">027 248 8614</a><br>
-      Email: <a href="mailto:alex@networkanalytics.co.nz">alex@networkanalytics.co.nz</a><br>
-      Website: <a href="https://www.networkanalytics.co.nz">www.networkanalytics.co.nz</a>
-    </p>
-  </section>
-</main>
+      <h3>Reporting &amp; Operational Support</h3>
+      <ul>
+        <li>Network volume and demand reporting</li>
+        <li>Billing systems and data validation</li>
+        <li>Revenue protection</li>
+        <li>Process improvement</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Contact</h2>
+      <p><strong>Alex Nisbet</strong><br>
+        Phone: <a href="tel:+64272488614">027 248 8614</a><br>
+        Email: <a href="mailto:alex@networkanalytics.co.nz">alex@networkanalytics.co.nz</a><br>
+        Website: <a href="https://www.networkanalytics.co.nz">www.networkanalytics.co.nz</a>
+      </p>
+    </section>
+  </main>
 
   <footer>&copy; <span id="y"></span> Network Analytics</footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
-
 </html>
-
-
